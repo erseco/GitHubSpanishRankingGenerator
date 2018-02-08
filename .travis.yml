@@ -2,12 +2,12 @@ language: python
 python:
   - "3.5"
 install:
-  - pip install git+https://github.com/erseco/GitHubCity.git#subdirectory=src
+  - pip install -r requirements.txt
 script:
   - echo "No tests"
 after_success:
   - git clone git://github.com/erseco/GitHubRankingsSpain.git generated
-  - make
+  - make multi
   - make spain-region
   - git config --global user.email "info@ernesto.es"
   - git config --global user.name "Ernesto Serrano"
