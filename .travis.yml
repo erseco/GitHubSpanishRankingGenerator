@@ -2,7 +2,7 @@ language: python
 python:
   - "3.5"
 install:
-  - pip install -r requirements.txt
+  - pip install git+https://github.com/erseco/GitHubCity.git#subdirectory=src
 script:
   - echo "No tests"
 after_success:
