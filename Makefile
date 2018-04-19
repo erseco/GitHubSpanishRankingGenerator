@@ -4,7 +4,7 @@ EXEC=$(PYTHON) $(PROCESS)
 REG=$(PYTHON) region.py
 CONF=configuration/
 GEN=generated/
-MAX_PARALLEL=8
+MAX_PARALLEL=12
 
 .PHONY: all multi
 multi:
