@@ -8,10 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-      with:
-        repository: git://github.com/erseco/GitHubRankingsSpain.git
-        path: generated
 
     - uses: actions/checkout@v1
     - name: Install requirements
@@ -20,9 +16,18 @@ jobs:
         pip3 install -r requirements.txt
     - name: Generate ranking
       run: |
+        git clone git://github.com/erseco/GitHubRankingsSpain.git generated
+
         make multi
         make spain-region
 
-    # - uses: ad-m/github-push-action@master
-    #   with:
-    #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+        git config --global user.email "info@ernesto.es"
+        git config --global user.name "Ernesto Serrano"
+        cd generated
+        git remote
+        git add *
+        git commit -m "New rankings were generated"
+        git push "https://erseco:${ACCESS}@github.com/erseco/GitHubRankingsSpain.git" master > /dev/null 2>&1
+
+      with:
+        ACCESS: ${{ secrets.GITHUB_TOKEN }}
