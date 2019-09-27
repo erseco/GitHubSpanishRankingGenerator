@@ -1,0 +1,27 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        repository: git://github.com/erseco/GitHubRankingsSpain.git
+        path: generated
+
+    - uses: actions/checkout@v1
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install -r requirements.txt
+    - name: Generate ranking
+      run: |
+        make multi
+        make spain-region
+
+    # - uses: ad-m/github-push-action@master
+    #   with:
+    #     repo-token: ${{ secrets.GITHUB_TOKEN }}
