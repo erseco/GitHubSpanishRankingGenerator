@@ -29,5 +29,5 @@ jobs:
         git commit -m "New rankings were generated"
         git push "https://erseco:${ACCESS}@github.com/erseco/GitHubRankingsSpain.git" master > /dev/null 2>&1
 
-      with:
+      env:
         ACCESS: ${{ secrets.GITHUB_TOKEN }}
