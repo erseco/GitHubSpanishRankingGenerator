@@ -30,7 +30,8 @@ jobs:
         git remote
         git add *
         git commit -m "New rankings were generated"
-        git push "https://erseco:${ACCESS}@github.com/erseco/GitHubRankingsSpain.git" master > /dev/null 2>&1
+        git push "https://${GH_ID}:${GH_SECRET}@github.com/erseco/GitHubRankingsSpain.git" master > /dev/null 2>&1
 
       env:
-        ACCESS: ${{ secrets.GITHUB_TOKEN }}
+        GH_ID: erseco
+        GH_SECRET: ${{ secrets.GITHUB_TOKEN }}
