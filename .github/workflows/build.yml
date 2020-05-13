@@ -20,11 +20,9 @@ jobs:
     - name: Generate ranking
       run: |
         git clone git://github.com/erseco/GitHubRankingsSpain.git generated
-
         make multi
         #make spain-region
         make andalucia
-
         git config --global user.email "info@ernesto.es"
         git config --global user.name "Ernesto Serrano"
         cd generated
@@ -32,7 +30,7 @@ jobs:
         git add *
         git commit -m "New rankings were generated"
         git push "https://${GH_ID}:${GH_SECRET}@github.com/erseco/GitHubRankingsSpain.git" master > /dev/null 2>&1
-
+        
       env:
         GH_ID: erseco
         GH_SECRET: ${{ secrets.GITHUB_TOKEN }}
